@@ -25,7 +25,7 @@ function toQuiz(cards: {front:string, back:string}[]){
   return NextResponse.json(toQuiz(cards));
 }
 
-export async function POST(req: Request, { params }: { params: { noteId: string } }){
+export async function POST(req: Request, { params }: { params:any){
   const body = await req.json();
   const answers: number[] = body.answers || [];
   const cards = await db.select({ front: flashcards.front, back: flashcards.back }).from(flashcards).where(eq(flashcards.noteId, params.noteId));
