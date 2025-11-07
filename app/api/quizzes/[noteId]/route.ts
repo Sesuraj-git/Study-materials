@@ -20,7 +20,7 @@ function toQuiz(cards: {front:string, back:string}[]){
   return qs;
 }
 
-export async function GET(_: Request, { params }: { params: { noteId: string } }){
+ async function GET(_: Request, { params }: { params: { noteId: string } }){
   const cards = await db.select({ front: flashcards.front, back: flashcards.back }).from(flashcards).where(eq(flashcards.noteId, params.noteId));
   return NextResponse.json(toQuiz(cards));
 }
