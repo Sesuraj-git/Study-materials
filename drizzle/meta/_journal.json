@@ -8,6 +8,13 @@
       "when": 1762525941410,
       "tag": "0000_wooden_turbo",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1762526621793,
+      "tag": "0001_yielding_blink",
+      "breakpoints": true
     }
   ]
 }

@@ -4,11 +4,7 @@ import { users } from '@/lib/schema';
 import bcrypt from 'bcrypt';
 import { z } from 'zod';
 
-const Schema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-  password: z.string().min(6),
-});
+const Schema = z.object({ name: z.string().min(1), email: z.string().email(), password: z.string().min(6) });
 
 export async function POST(req: Request){
   const body = await req.json();

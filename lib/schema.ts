@@ -9,6 +9,29 @@ export const users = pgTable("users", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const notes = pgTable("notes", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id").references(() => users.id),
+  title: text("title"),
+  sourceType: text("source_type"),
+  rawText: text("raw_text"),
+  filePath: text("file_path"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const flashcards = pgTable("flashcards", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  noteId: uuid("note_id").references(() => notes.id),
+  userId: uuid("user_id").references(() => users.id),
+  front: text("front"),
+  back: text("back"),
+  easeFactor: doublePrecision("ease_factor").default(2.5),
+  interval: integer("interval").default(0),
+  repetitions: integer("repetitions").default(0),
+  nextReview: timestamp("next_review"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const workspaces = pgTable("workspaces", {
   id: uuid("id").primaryKey().defaultRandom(),
   title: text("title").notNull(),
